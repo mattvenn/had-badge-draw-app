@@ -16,17 +16,15 @@ void render_lines(int height_inc)
     sprintf(text, "inc: %d", height_inc);
     set_text(0,0, text);
 
-    int x = FB_WIDTH / 2;
-    int y = FB_HEIGHT / 2;
+    int x = WIDTH / 2;
+    int y = HEIGHT / 2;
     // if height increment is 3 then horizontal lines are 2 pix thick 
     // if height increment is 2 then horizontal lines are missing
     // vertical lines are always correct
-    for(int height = 0; height < FB_HEIGHT/2; height += height_inc)
-    {
+    for(int height = 0; height < HEIGHT/2; height += height_inc)
         draw_rect(x - height, y - height, x + height, y + height, GREEN);
-    }
 
-    flush_fb(); // this is required to avoid missing parts of the drawing
+    flush_fb(); // this is required to flush graphics caches
 }
 void main(int argc, char **argv) {
 
@@ -35,18 +33,21 @@ void main(int argc, char **argv) {
     init();
 
 	int run = 1;
-    render_lines(2);
+    render_lines(1);
 	while(run) {
 		// Exit when the start button is pressed
-		if (MISC_REG(MISC_BTN_REG) & BUTTON_START) {
+		if (MISC_REG(MISC_BTN_REG) & BUTTON_START)
 			run = 0;
-    	}
 		if (MISC_REG(MISC_BTN_REG) & BUTTON_UP)
-            render_lines(3);
+            render_lines(2);
 		if (MISC_REG(MISC_BTN_REG) & BUTTON_DOWN)
+            render_lines(3);
+		if (MISC_REG(MISC_BTN_REG) & BUTTON_LEFT)
             render_lines(4);
 		if (MISC_REG(MISC_BTN_REG) & BUTTON_LEFT)
             render_lines(5);
+		if (MISC_REG(MISC_BTN_REG) & BUTTON_A)
+            render_lines(1);
 	}
 	printf("app done. Bye!\n");
 }

@@ -1,5 +1,8 @@
-#define FB_WIDTH 480
+#define FB_WIDTH 512
 #define FB_HEIGHT 320
+
+#define WIDTH 480
+#define HEIGHT 320
 
 #define BLACK 0
 #define WHITE 1

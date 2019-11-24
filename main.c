@@ -13,6 +13,9 @@ void render_lines(int height_inc)
 {
     clear_fbuf(BLACK);
     char * text = malloc(32);
+    sprintf(text, "inc: %d", height_inc);
+    set_text(0,0, text);
+
     int x = FB_WIDTH / 2;
     int y = FB_HEIGHT / 2;
     // if height increment is 3 then horizontal lines are 2 pix thick 
@@ -20,8 +23,6 @@ void render_lines(int height_inc)
     // vertical lines are always correct
     for(int height = 0; height < FB_HEIGHT/2; height += height_inc)
     {
-        sprintf(text, "%03d,%03d %03d,%03d", x - height, y - height, x + height, y + height);
-        set_text(0,0, text);
         draw_rect(x - height, y - height, x + height, y + height, GREEN);
     }
 

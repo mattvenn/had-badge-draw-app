@@ -11,7 +11,7 @@
 #define FB_WIDTH 512
 #define FB_HEIGHT 320
 
-#define WIDTH 480
+#define WIDTH 200
 #define HEIGHT 320
 
 #define BLACK 0
